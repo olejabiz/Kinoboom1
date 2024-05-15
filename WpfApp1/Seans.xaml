@@ -42,9 +42,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Tag="{Binding Name}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Content="12:00" Click="John1_Click"/>
-                                    <Button Tag="{Binding Name}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Content="15:00" Click="John2_Click"/>
-                                    <Button Tag="{Binding Name}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Content="18:00" Click="John3_Click"/>
+                                    <Button Tag="{Binding Name}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Content="Купить билет" Click="John1_Click"/>
                                 </Grid>
                             </Border>
                         </Grid>

@@ -9,7 +9,7 @@ namespace WpfApp1.Classes
 {
     public class AutorizReg
     {
-        KinoboomEntities1 ef = new KinoboomEntities1();
+        KinoboomEntities ef = new KinoboomEntities();
 
         public bool IsAutoriz(string Phone, string pass)
         {

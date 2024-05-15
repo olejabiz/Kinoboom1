@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.Remoting;
+using RemoteLib;
+using System.Runtime.Remoting.Lifetime;
 
 namespace WpfApp1
 {
@@ -21,14 +24,28 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private KinoboomEntities1 _context = new KinoboomEntities1();
+        BookStore bookApp;
+        private KinoboomEntities _context = new KinoboomEntities();
         public MainWindow()
         {
             InitializeComponent();
-            var films = KinoboomEntities1.GetContext().Film.ToList();
+            var films = KinoboomEntities.GetContext().Film.ToList();
             ListFilms.ItemsSource = films;
+            RemotingConfiguration.Configure("C:\\Users\\Олег\\Desktop\\sa\\BookStore\\ZooPark\\App1.config", false);
+            bookApp = new BookStore();
+            try
+            {
+                bookApp.startApp();
+                ILease lease = (ILease)bookApp.GetLifetimeService();
+                TimeSpan time = new TimeSpan(0, 0, 20);
+                lease.Renew(time);
+                MessageBox.Show("Сервер работает");
+            }
+            catch
+            {
+                MessageBox.Show("Сервер не работает");
+            }
         }
-
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
             RegAutoriz ent = new RegAutoriz();

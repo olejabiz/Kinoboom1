@@ -44,7 +44,7 @@
                             <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0"  BorderBrush="Black" BorderThickness="1" >
-                            <Image Height="150" Width="150" Source="/Resources/11.jpg" Grid.Row="0" Stretch="Fill" 
+                            <Image Height="150" Width="150" Source="C:\Users\Олег\Desktop\sa\BookStore\Kinoboom1\WpfApp1\Resources\123.jpg" Grid.Row="0" Stretch="Fill" 
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <Border Grid.Row="1"  BorderBrush="Black" BorderThickness="1" >

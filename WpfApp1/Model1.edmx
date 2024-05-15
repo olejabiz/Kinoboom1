@@ -4,24 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище KinoboomModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище KinoboomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID_Client" />
           </Key>
           <Property Name="ID_Client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TelNum" Type="nvarchar" MaxLength="1000" />
-          <Property Name="Password" Type="nvarchar" MaxLength="1000" />
-          <Property Name="BoughtTickets" Type="nvarchar" MaxLength="1000" />
-          <Property Name="Role" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TelNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="BoughtTickets" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Film">
           <Key>
             <PropertyRef Name="FilmID" />
           </Key>
           <Property Name="FilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="1000" />
-          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ShowingFilm">
           <Key>
@@ -29,10 +29,20 @@
           </Key>
           <Property Name="ShowingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FilmID" Type="int" />
-          <Property Name="Date" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
           <Property Name="SeatsNum" Type="int" />
-          <Property Name="MaxCapacity" Type="nvarchar" MaxLength="1000" />
-          <Property Name="TicketCost" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MaxCapacity" Type="nvarchar" MaxLength="50" />
+          <Property Name="TicketCost" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -79,10 +89,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище KinoboomModel1Container">
+        <EntityContainer Name="Хранилище KinoboomModelContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShowingFilm" EntityType="Self.ShowingFilm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ShowingFilm_Film" Association="Self.FK_ShowingFilm_Film">
             <End Role="Film" EntitySet="Film" />
@@ -101,16 +112,16 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="KinoboomModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="KinoboomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID_Client" />
           </Key>
           <Property Name="ID_Client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TelNum" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="BoughtTickets" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TelNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BoughtTickets" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Client" FromRole="Client" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Film">
@@ -118,8 +129,8 @@
             <PropertyRef Name="FilmID" />
           </Key>
           <Property Name="FilmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="ShowingFilm" Relationship="Self.FK_ShowingFilm_Film" FromRole="Film" ToRole="ShowingFilm" />
         </EntityType>
         <EntityType Name="ShowingFilm">
@@ -128,12 +139,22 @@
           </Key>
           <Property Name="ShowingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FilmID" Type="Int32" />
-          <Property Name="Date" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SeatsNum" Type="Int32" />
-          <Property Name="MaxCapacity" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="TicketCost" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MaxCapacity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TicketCost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Film" Relationship="Self.FK_ShowingFilm_Film" FromRole="ShowingFilm" ToRole="Film" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_ShowingFilm" FromRole="ShowingFilm" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -182,10 +203,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="KinoboomEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="KinoboomEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Film" EntityType="Self.Film" />
           <EntitySet Name="ShowingFilm" EntityType="Self.ShowingFilm" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" />
           <AssociationSet Name="FK_Ticket_Client" Association="Self.FK_Ticket_Client">
             <End Role="Client" EntitySet="Client" />
@@ -205,9 +227,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище KinoboomModel1Container" CdmEntityContainer="KinoboomEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KinoboomModelContainer" CdmEntityContainer="KinoboomEntities">
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="KinoboomModel1.Client">
+            <EntityTypeMapping TypeName="KinoboomModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
                 <ScalarProperty Name="TelNum" ColumnName="TelNum" />
@@ -218,7 +240,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Film">
-            <EntityTypeMapping TypeName="KinoboomModel1.Film">
+            <EntityTypeMapping TypeName="KinoboomModel.Film">
               <MappingFragment StoreEntitySet="Film">
                 <ScalarProperty Name="FilmID" ColumnName="FilmID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -227,7 +249,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShowingFilm">
-            <EntityTypeMapping TypeName="KinoboomModel1.ShowingFilm">
+            <EntityTypeMapping TypeName="KinoboomModel.ShowingFilm">
               <MappingFragment StoreEntitySet="ShowingFilm">
                 <ScalarProperty Name="ShowingID" ColumnName="ShowingID" />
                 <ScalarProperty Name="FilmID" ColumnName="FilmID" />
@@ -238,8 +260,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KinoboomModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ticket">
-            <EntityTypeMapping TypeName="KinoboomModel1.Ticket">
+            <EntityTypeMapping TypeName="KinoboomModel.Ticket">
               <MappingFragment StoreEntitySet="Ticket">
                 <ScalarProperty Name="ID_Ticket" ColumnName="ID_Ticket" />
                 <ScalarProperty Name="ShowingID" ColumnName="ShowingID" />
@@ -264,7 +297,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

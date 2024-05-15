@@ -12,21 +12,12 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Film
+    public partial class sysdiagrams
     {
-        public Film()
-        {
-            this.ShowingFilm = new HashSet<ShowingFilm>();
-        }
-        public Film(string name, string description)
-        {
-            Name = name;
-            Description = description;
-        }
-        public int FilmID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-    
-        public virtual ICollection<ShowingFilm> ShowingFilm { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

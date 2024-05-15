@@ -9,7 +9,7 @@ namespace WpfApp1.Classes
 {
     public class AddFilm
     {
-        KinoboomEntities1 ef = new KinoboomEntities1();
+        KinoboomEntities ef = new KinoboomEntities();
         Util util = new Util();
         public bool IsAdded(string Title)
         {

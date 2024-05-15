@@ -20,11 +20,11 @@ namespace WpfApp1
     public partial class Entered : Window
     {
         string phone;
-        public Entered(string phone ,bool admin)
+        public Entered(string phone, bool admin)
         {
             InitializeComponent();
             this.phone = phone;
-            var films = KinoboomEntities1.GetContext().Film.ToList();
+            var films = KinoboomEntities.GetContext().Film.ToList();
             ListFilms.ItemsSource = films;
             if (admin)
                 AdminButton.Visibility = Visibility.Visible;
@@ -52,10 +52,7 @@ namespace WpfApp1
 
         private void AdminButton_Click_1(object sender, RoutedEventArgs e)
         {
-            AddFilmWindow addfilmwindow = new AddFilmWindow();
-            addfilmwindow.ShowDialog();
-            var films = KinoboomEntities1.GetContext().Film.ToList();
-            ListFilms.ItemsSource = films;
+          
         }
     }
 }

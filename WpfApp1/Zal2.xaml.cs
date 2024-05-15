@@ -17,13 +17,13 @@ namespace WpfApp1
     /// <summary>
     /// Логика взаимодействия для Zal.xaml
     /// </summary>
-    public partial class Zal : Window
+    public partial class Zal2 : Window
     {
         List<Ticket> masTicket;
         KinoboomEntities ef = new KinoboomEntities();
         string Phone;
         int ShowingId;
-        public Zal(string Phone, string Title, string time)
+        public Zal2(string Phone, string Title, string time)
         {
             InitializeComponent();
             ShowingId = retShowingId(Title);
@@ -78,8 +78,9 @@ namespace WpfApp1
                         }
                     }
                 }
-            }        
+            }
         }
+
         private int retShowingId(string Titel)
         {
             foreach (var item1 in ef.Film)
@@ -108,3 +109,4 @@ namespace WpfApp1
         }
     }
 }
+

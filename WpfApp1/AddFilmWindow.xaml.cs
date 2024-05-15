@@ -21,18 +21,36 @@ namespace WpfApp1
     /// </summary>
     public partial class AddFilmWindow : Window
     {
-        KinoboomEntities1 ef;
+        string phone;
+        KinoboomEntities _ef;
         Util util = new Util();
-        AddFilm film1 = new AddFilm();
-        public AddFilmWindow()
+        public AddFilmWindow(string phone, bool admin)
         {
             InitializeComponent();
-            ef = new KinoboomEntities1();
+            _ef = new KinoboomEntities();
+            this.phone = phone;
+            if (admin)
+                DataGridClients.Visibility = Visibility.Visible;
+            var clients = KinoboomEntities.GetContext().Client.ToList();
+            DataGridClients.ItemsSource = clients;
         }
 
-        private void AddFilmBtn_Click(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            film1.addFilm(FilmNameTxt.Text, FilmDescriptionTxt.Text);
+            AddClWindow ad = new AddClWindow(_ef, this);
+            ad.Show();
+            this.Close();
+        }
+        private void BtnEditClient_Click(object sender, RoutedEventArgs e)
+        {
+            EditClWindow ap = new EditClWindow(_ef, sender, this);
+            ap.Show();
+            this.Close();
+        }
+
+        private void DataGridClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

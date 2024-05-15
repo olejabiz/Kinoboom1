@@ -21,13 +21,13 @@ namespace WpfApp1
     /// </summary>
     public partial class RegAutoriz : Window
     {
-        KinoboomEntities1 ef;
+        KinoboomEntities ef;
         AutorizReg AutorizReg = new AutorizReg();
         Util util = new Util();
         public RegAutoriz()
         {
             InitializeComponent();
-            ef = new KinoboomEntities1();
+            ef = new KinoboomEntities();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +36,7 @@ namespace WpfApp1
             {
                 if (AutorizReg.RoleAdminCheck(AufTelNumTxt.Text))
                 {
-                    Entered en = new Entered(AufTelNumTxt.Text, true);
+                    AddFilmWindow en = new AddFilmWindow(AufTelNumTxt.Text, true);
                     en.Show();
                     this.Close();
                 }

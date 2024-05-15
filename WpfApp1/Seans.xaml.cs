@@ -20,35 +20,36 @@ namespace WpfApp1
     public partial class Seans : Window
     {
         string Phone;
+        KinoboomEntities ef;
         public Seans(string Phone)
         {
             InitializeComponent();
-            this.Phone = Phone; 
-            var films = KinoboomEntities1.GetContext().Film.ToList();
+            this.Phone = Phone;
+            ef = new KinoboomEntities();
+            var films = KinoboomEntities.GetContext().Film.ToList();
             ListFilms.ItemsSource = films;
         }
         private void John1_Click(object sender, RoutedEventArgs e)
         {
             object tag = ((Button)e.OriginalSource).Tag;
-            Zal ent = new Zal(Phone, (string)tag, "12:00");
-            ent.Show();
-            this.Close();
-        }
-
-        private void John2_Click(object sender, RoutedEventArgs e)
-        {
-            object tag = ((Button)e.OriginalSource).Tag;
-            Zal ent = new Zal(Phone, (string)tag, "15:00");
-            ent.Show();
-            this.Close();
-        }
-
-        private void John3_Click(object sender, RoutedEventArgs e)
-        {
-            object tag = ((Button)e.OriginalSource).Tag;
-            Zal ent = new Zal(Phone, (string)tag, "18:00");
-            ent.Show();
-            this.Close();
+            if ((string)tag == "Жизнь ПИ  ")
+            {
+                Zal ent = new Zal(Phone, (string)tag, "12:00");
+                ent.Show();
+                this.Close();
+            }
+            if ((string)tag == "Мадагаскар")
+            {
+                Zal2 ent = new Zal2(Phone, (string)tag, "15:00");
+                ent.Show();
+                this.Close();
+            }
+            if ((string)tag == "1+1       ")
+            {
+                Zal3 ent = new Zal3(Phone, (string)tag, "18:00");
+                ent.Show();
+                this.Close();
+            }
         }
     }
 }
